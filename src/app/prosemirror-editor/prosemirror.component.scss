@@ -1,0 +1,22 @@
+.button-wrapper {
+  margin: 10px 20px;
+}
+
+.editor ::ng-deep {
+  .menubar {
+    padding: 10px 20px;
+    background-color: #ddd;
+
+    .menuicon {
+      display: inline-block;
+      width: 20px;
+      line-height: 20px;
+      border: 1px solid #000;
+      margin-right: 10px;
+      text-align: center;
+    }
+  }
+  .ProseMirror {
+    padding: 20px;
+  }
+}
