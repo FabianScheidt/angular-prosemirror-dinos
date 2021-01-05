@@ -1,6 +1,6 @@
 import { Plugin } from 'prosemirror-state';
 import { toggleMark, setBlockType, wrapIn } from 'prosemirror-commands';
-import { schema } from './schema';
+import { dinos, schema } from './schema';
 
 class MenuView {
   items;
@@ -67,6 +67,21 @@ export const makeMenu = () => {
     };
   }
 
+  function insertDino(type) {
+    return (state, dispatch) => {
+      const dinoType = schema.nodes.dino;
+      const {$from} = state.selection;
+      const index = $from.index();
+      if (!$from.parent.canReplaceWith(index, index, dinoType)) {
+        return false;
+      }
+      if (dispatch) {
+        dispatch(state.tr.replaceSelectionWith(dinoType.create({type})));
+      }
+      return true;
+    };
+  }
+
 
   return menuPlugin([
     {command: toggleMark(schema.marks.strong), dom: icon('B', 'strong')},
@@ -74,5 +89,6 @@ export const makeMenu = () => {
     {command: setBlockType(schema.nodes.paragraph), dom: icon('p', 'paragraph')},
     heading(1), heading(2), heading(3),
     {command: wrapIn(schema.nodes.blockquote), dom: icon('>', 'blockquote')},
+    ...dinos.map((d) => ({command: insertDino(d), dom: icon(d, 'dino')}))
   ]);
 };

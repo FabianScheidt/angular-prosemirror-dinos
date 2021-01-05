@@ -9,8 +9,9 @@
 
     .menuicon {
       display: inline-block;
-      width: 20px;
+      min-width: 20px;
       line-height: 20px;
+      padding: 5px;
       border: 1px solid #000;
       margin-right: 10px;
       text-align: center;
@@ -18,5 +19,14 @@
   }
   .ProseMirror {
     padding: 20px;
+    white-space: pre-wrap;
+
+    img.dinosaur {
+      height: 40px;
+      vertical-align: bottom;
+      border: 1px solid #0ae;
+      border-radius: 4px;
+      background: #ddf6ff;
+    }
   }
 }
